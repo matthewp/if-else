@@ -1,6 +1,6 @@
 # &lt;if-else&gt;
 
-A custom element to conditionally render a template.
+A __716 byte__ custom element to conditionally render a template.
 
 ```html
 <if-else>
@@ -23,13 +23,13 @@ A custom element to conditionally render a template.
 Install with [npm](https://www.npmjs.com/package/if-else)
 
 ```shell
-npm install if-else
+npm install @matthewp/if-else
 ```
 
 Or [Yarn](https://yarnpkg.com/en/package/if-else)
 
 ```shell
-yarn add if-else
+yarn add @matthewp/if-else
 ```
 
 ## Usage
