@@ -65,36 +65,36 @@ class View {
 const VIEW = Symbol('if-else.view');
 
 class IfElse extends HTMLElement {
-  static get observedAttribute() {
+  static get observedAttributes() {
     return ['true'];
   }
 
   constructor() {
     super();
     this.attachShadow({ mode: 'open' });
-    this._value = this.hasAttribute('true');
   }
 
   connectedCallback() {
     if(!this[VIEW]) {
       let view = this[VIEW] = new View();
-      let frag = view.update({ value: !!this.value });
+      let value = this.hasAttribute('true');
+      let frag = view.update({ value });
       this.shadowRoot.appendChild(frag);
     }
   }
 
-  attributeChangeCallback(name, _, newValue) {
-    this[name] = newValue === '';
+  attributeChangedCallback(_, __, newValue) {
+    let value = newValue === '';
+    if(this[VIEW]) {
+      this[VIEW].update({ value });
+    }
   }
 
   get value() {
-    return this._value;
+    return this[VIEW].value;
   }
 
   set value(value) {
-    if(this._value === value) return;
-    this._value = value;
-
     if(this[VIEW]) {
       this[VIEW].update({ value });
     }
