@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<title>Example app</title>
+<style>
+  body {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    margin: 0;
+    padding: 0;
+  }
+
+  main {
+    padding: 2em 5em;
+    text-align: center;
+  }
+  
+  button {
+    font-family: inherit;
+    font-size: 130%;
+    border: 5px solid firebrick;
+    background-color: tomato;
+    padding: 0.4em 0.8em;
+    color: white;
+    cursor: pointer;
+  }
+
+  [slot] {
+    margin-top: 2em;
+  }
+</style>
+
+<script type="module" src="../index.js"></script>
+
+<main>
+  <h1 id="state">True</h1>
+  <button>Toggle</button>
+
+  <if-else true>
+    <template slot="if">
+      <h2>It is true</h2>
+    </template>
+    <template slot="else">
+      <h2>It is false</h2>
+    </template>
+  </if-else>
+</main>
+
+<script type="module">
+  let ifElse = document.querySelector('if-else');
+  let stateEl = document.querySelector('#state');
+  let btn = document.querySelector('button');
+  let state = true;
+  btn.addEventListener('click', () => {
+    state = !state;
+    stateEl.textContent = state ? 'True' : 'False';
+    ifElse.value = state;
+  });
+</script>

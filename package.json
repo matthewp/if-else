@@ -1,0 +1,22 @@
+{
+  "name": "if-else",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "BSD-2-Clause",
+  "homepage": "https://github.com/matthewp/if-else",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/matthewp/if-else.git"
+  },
+  "author": {
+    "name": "Matthew Phillips",
+    "email": "matthew@matthewphillips.info"
+  },
+  "files": [
+    "index.js"
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "@matthewp/compile": "^1.3.1"
+  }
+}

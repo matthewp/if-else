@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mocha/5.2.0/mocha.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/5.2.0/mocha.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/chai/4.2.0/chai.js"></script>
+
+<div id="host"></div>
+<div id="mocha"></div>
+
+<template id="only-if">
+  <if-else true>
+    <template slot="if">true</template>
+  </if-else>
+</template>
+
+<template id="if-and-else">
+  <if-else true>
+    <template slot="if">true</template>
+    <template slot="else">false</template>
+  </if-else>
+</template>
+
+<script type="module">
+  import '../index.js';
+
+  const { assert } = chai;
+  const host = document.querySelector('#host');
+  mocha.setup('bdd');
+
+  function clear(el) {
+    while(el.lastChild) {
+      el.removeChild(el.lastChild);
+    }
+  }
+
+  describe('Template with only an if', () => {
+    let ifElse;
+
+    before(done => {
+      clear(host);
+      let tmpl = document.querySelector('#only-if');
+      host.appendChild(document.importNode(tmpl.content, true));
+      ifElse = document.querySelector('if-else');
+      setTimeout(done);
+    });
+
+    beforeEach(() => {
+      ifElse.value = true;
+    })
+
+    it('Initially true', () => {
+      let root = ifElse.shadowRoot.querySelector('#root');
+      assert.equal(root.textContent, 'true');
+    });
+
+    it('Content removed when goes to false', done => {
+      ifElse.value = false;
+
+      setTimeout(() => {
+        let root = ifElse.shadowRoot.querySelector('#root');
+        assert.equal(root.textContent, '');
+        done();
+      });
+    });
+  });
+
+  describe('Template with both if and else', () => {
+    let ifElse;
+
+    before(done => {
+      clear(host);
+      let tmpl = document.querySelector('#if-and-else');
+      host.appendChild(document.importNode(tmpl.content, true));
+      ifElse = document.querySelector('if-else');
+      setTimeout(done);
+    });
+
+    beforeEach(() => {
+      ifElse.value = true;
+    })
+
+    it('Initially true', () => {
+      let root = ifElse.shadowRoot.querySelector('#root');
+      assert.equal(root.textContent, 'true');
+    });
+
+    it('Can be changed to false', done => {
+      ifElse.value = false;
+
+      setTimeout(() => {
+        let root = ifElse.shadowRoot.querySelector('#root');
+        assert.equal(root.textContent, 'false');
+        done();
+      });
+    });
+  });
+
+  mocha.run();
+</script>
