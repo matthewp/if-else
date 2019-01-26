@@ -10,7 +10,7 @@ A __716 byte__ custom element to conditionally render a template.
 </if-else>
 
 <script type="module">
-  import "https://unpkg.com/if-else/index.js";
+  import "https://unpkg.com/@matthewp/if-else/index.js";
 
   document.querySelector('if-else').value = true;
 
@@ -20,13 +20,13 @@ A __716 byte__ custom element to conditionally render a template.
 
 ## Install
 
-Install with [npm](https://www.npmjs.com/package/if-else)
+Install with [npm](https://www.npmjs.com/package/@matthewp/if-else)
 
 ```shell
 npm install @matthewp/if-else
 ```
 
-Or [Yarn](https://yarnpkg.com/en/package/if-else)
+Or [Yarn](https://yarnpkg.com/en/package/@matthewp/if-else)
 
 ```shell
 yarn add @matthewp/if-else
